@@ -1,0 +1,86 @@
+body {
+	background-color: #202020;
+}
+
+
+/* The main container look for backgrounds throughout site */
+.main-container {
+    position: absolute;
+    left: 125px;
+    top: 10px;
+	 
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.column {
+	float: left;
+    width: 30%;
+    margin-left: 5px;
+}
+
+.container {
+	background-color: #b6b3b3;
+	/* rounded corners */
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 20px;
+	font-family: 'Lato' sans-serif;
+    font-weight: 100;
+    padding: 10px;
+}
+
+/* MAIN SECTIONS STYLING */
+.header {
+    text-align: center;
+}
+
+.contacts-table {
+    width: 100%;
+    font-size: 1.25em;
+    font-family: Lato, sans-serif;
+}
+
+.contact-table input {
+    font-size: 1.25em;
+}
+
+/* GENERIC STYLING */
+
+.center {
+    text-align: center;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.even {
+    background-color: #cccccc;
+}
+
+.clickable {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.move-right {
+    position: absolute;
+    margin-left: 100px;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    font-family: Courier New, Courier, monospace;
+    font-weight: bold;
+    font-size: 15px;
+}
