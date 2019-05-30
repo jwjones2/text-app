@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title></title>
+        <title>{{$title}}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -16,9 +16,9 @@
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"> </script>
         
         <!-- Link to Stylesheet -->
-        <link rel="stylesheet" href="./popup.css" type="text/css" />
-        <link rel="stylesheet" href="./home.css" type="text/css" />
-        <link rel="stylesheet" href="./menu.css" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/home.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/menu.css')}}" type="text/css" />
 
         <!-- toastr -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css">
@@ -30,8 +30,10 @@
         
     </head>
     <body>
-        @yield('menu')
+        @include('menu')
 
-        @yield('main', '')
+        <div class="container">
+            @yield('content')
+        </div>
     </body>
 </html>

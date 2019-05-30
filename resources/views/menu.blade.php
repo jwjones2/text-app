@@ -5,9 +5,9 @@
 
 	    <!--  MEMBERS  *separate for ease of access -->
 	    	<li>
-				<a href="./contacts.php">Manage</a>
+				<a href="/contacts">Manage</a>
 					<ul>
-						<li><a href="./contacts.php">Contacts</a></li>
+						<li><a href="/contacts">Contacts</a></li>
 						<li><a href="./groups.php">Groups</a></li>
 						<li><a href="./hooks.php">Special Responses</a></li>
 					</ul>
@@ -38,4 +38,3 @@
 		 	<br />
  		<a href="login/Logout.php">Logout</a>
 	</div>
-	

@@ -11,4 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@main');
+Route::get('/', 'PagesController@index');
+
+// routes for contacts
+Route::resource('contacts', 'ContactsController');
