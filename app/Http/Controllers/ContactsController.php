@@ -43,7 +43,19 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            //rules...  'title' => 'required', ...
+            'name' => 'required',
+            'number' => 'required' // and is number??
+        ]);
+
+        // Create Contact
+        $contact = new Contact;
+        $contact->name = $request->input('name');
+        $contact->number = $request->input('number');
+        $contact->save();
+
+        return redirect('/contacts')->with('success', 'The contact was created.');
     }
 
     /**
