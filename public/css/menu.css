@@ -6,12 +6,6 @@ ul {
   padding: 0;
 }
 
-/* Decor */
-
-body {
-  background: #808080;
-}
-
 .drawer {
   position: absolute;
   z-index: 10;

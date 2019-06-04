@@ -1,7 +1,12 @@
-body {
-	background-color: #202020;
-}
+// Variables
+@import 'variables';
 
+
+/* Decor */
+body {
+    background: $backgroundDark;
+}
+  
 
 /* The main container look for backgrounds throughout site */
 .main-container {
@@ -23,7 +28,7 @@ body {
 }
 
 .container {
-	background-color: #b6b3b3;
+	background-color: $backgroundCream;
 	/* rounded corners */
 	-moz-border-radius: 5px;
     border-radius: 5px;
@@ -75,6 +80,19 @@ body {
 .move-right {
     position: absolute;
     margin-left: 100px;
+}
+
+.shift-down-sm{
+    position: relative;
+    top: 5px;
+}
+.shift-down-md{
+    position: relative;
+    top: 10px;
+}
+.shift-down-lrg{
+    position: relative;
+    top: 15px;
 }
 
 .delete-button {

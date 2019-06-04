@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/send', 'SmsController@send');
 
 // routes for contacts
 Route::resource('contacts', 'ContactsController');

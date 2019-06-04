@@ -1,7 +1,7 @@
  
 	<ul class="drawer">
 		<!-- HOME -->
-	        <li><a href="./SMS.php">Home</a></li>
+	        <li><a href="/">Home</a></li>
 
 	    <!--  MEMBERS  *separate for ease of access -->
 	    	<li>
