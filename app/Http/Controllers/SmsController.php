@@ -24,13 +24,19 @@ class SmsController extends Controller
                 ['from' => $twilio_number, 'body' => $message] );
     }
 
-    public function send () {
+    public function send (Request $request) {
         $title = 'Praise Text Alert Program';
+        
+        // validate
+        $request->validate([
+            'message' => 'required'
+        ]);
+        
         // uses the Twilio Api to make send the message
 
         // get variables from POST request
-        $message = request('message') ?: '';
-        $send_to = request('send_to') ?: null;
+        $message = $request->input('message') ?: '';
+        $send_to = $request->input('send_to') ?: null;
 
         // append this to end of every message
         $tag = "\n\nReply REMOVE to unsubscribe.  Msg & Data Rates may apply.";
@@ -50,6 +56,10 @@ class SmsController extends Controller
         //}
         foreach ( $contacts as $contact ) {
             file_put_contents('log.txt', '<h1>Sending to ' . $contact->number . '</h1>', FILE_APPEND);
+            
+
+
+            /*
             try {
                 $this->send_message(
                     $message . $tag,
@@ -61,8 +71,9 @@ class SmsController extends Controller
                 // redirect with error message
                 return redirect()->route('/')->with(['title'=>$title, 'error' => 'Could not send the message. See log.txt for errors.']);
             }
+            */
         }
 
-        return redirect()->route('/')->with(['title'=>$title, 'success' => 'The message was sent!']);
+        return redirect()->route('home')->with(['title'=>$title, 'success' => 'The message was sent!']);
     }
 }

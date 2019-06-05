@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/send', 'SmsController@send');
+Route::get('/', 'PagesController@index')->name('home');
+Route::post('/send', 'SmsController@send');
 
 // routes for contacts
 Route::resource('contacts', 'ContactsController');
