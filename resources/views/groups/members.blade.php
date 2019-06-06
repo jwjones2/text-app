@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="header">Add Members to &quote;{{ $group->name }}&quote;</h1>
+<div class="container form-group">
+    <h1 class="header">Add Members to &quot;{{ $group->name }}&quot;</h1>
     <form action="/groups/members">
         @foreach($members as $member)
-            <input type="checkbox" name="member[{{$member->id}}]" /> 
-            {{ $member->name }}
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="member" name="member[{{$member->id}}]" /> 
+            <label for="member" class="form-check-label">{{ $member->name }}</label>
+        </div>
         @endforeach
-        <button class="btn btn-primary shift-down-sm md-2" type="submit">Send</button>
+        <button class="btn btn-primary shift-down-sm md-2" type="submit">Add</button>
     </form>
 </div>
 @endsection
