@@ -8,7 +8,7 @@
 				<a href="/contacts">Manage</a>
 					<ul>
 						<li><a href="/contacts">Contacts</a></li>
-						<li><a href="./groups.php">Groups</a></li>
+						<li><a href="./groups">Groups</a></li>
 						<li><a href="./hooks.php">Special Responses</a></li>
 					</ul>
 			</li>

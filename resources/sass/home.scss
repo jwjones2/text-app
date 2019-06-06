@@ -95,6 +95,19 @@ body {
     top: 15px;
 }
 
+.shift-up-sm{
+    position: relative;
+    bottom: 5px;
+}
+.shift-up-md{
+    position: relative;
+    bottom: 10px;
+}
+.shift-up-lrg{
+    position: relative;
+    bottom: 15px;
+}
+
 .delete-button {
     background-color: red;
     color: white;

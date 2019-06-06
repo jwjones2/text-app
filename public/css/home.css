@@ -85,11 +85,28 @@ body {
 }
 
 .shift-down-md {
-  padding-top: 10px;
+  position: relative;
+  top: 10px;
 }
 
 .shift-down-lrg {
-  padding-top: 15px;
+  position: relative;
+  top: 15px;
+}
+
+.shift-up-sm {
+  position: relative;
+  bottom: 5px;
+}
+
+.shift-up-md {
+  position: relative;
+  bottom: 10px;
+}
+
+.shift-up-lrg {
+  position: relative;
+  bottom: 15px;
 }
 
 .delete-button {
