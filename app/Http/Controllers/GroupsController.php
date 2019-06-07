@@ -139,8 +139,20 @@ class GroupsController extends Controller
             'members' => $members
         ]);
     }
+    
+    public function members (Request $request, $id ) {
+        $members = $request->get('member');
 
-    public function members () {
-        return 'not yet';
+        $group = Group::find($id);
+
+        // loop over ids and add members to the group
+        foreach( array_keys($members) as $id ) {
+            // get the Model for contact then save
+            $contact = Contact::find($id);
+            $group->members()->save($contact);
+        }
+        
+        // redirect to groups page with success message
+        return redirect('/groups/' . $id)->with(['title' => 'Group', 'success' => 'Group members were added!']);
     }
 }

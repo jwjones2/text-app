@@ -3,7 +3,7 @@
 @section('content')
 <div class="container form-group">
     <h1 class="header">Add Members to &quot;{{ $group->name }}&quot;</h1>
-    <form action="/groups/members">
+    <form action="/groups/addmember/{{$group->id}}">
         @foreach($members as $member)
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="member" name="member[{{$member->id}}]" /> 
