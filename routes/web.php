@@ -20,4 +20,4 @@ Route::resource('contacts', 'ContactsController');
 // routes for groups
 Route::resource('groups', 'GroupsController');
 Route::get('groups/{id}/members', 'GroupsController@view_members');
-Route::get('groups/members', 'GroupsController@members');
+Route::get('groups/addmember/{id}', 'GroupsController@members');
