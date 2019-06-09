@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
 
+        <script type="text/javascript" src="{{ URL::asset('js/bootstrap-collapse.js') }}"></script>
+
         <!-- Link to Javascript code for page -->
         <script type="text/javascript" language="Javascript" src="./popup.js"> </script>
         <script type="text/javascript" language="Javascript" src="./functions.js"> </script>
