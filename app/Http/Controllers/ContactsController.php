@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Validation\Rule;
 use App\Contact;
 
 class ContactsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -83,7 +96,13 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // display a single contact
+        $title = "Contact Page";
+        $contact = Contact::find($id);
+        return view('contacts.edit')->with([
+            'title'=>$title,
+            'contact'=>$contact
+        ]);
     }
 
     /**
@@ -95,7 +114,27 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => [
+                'required|unique:contacts|max:255',
+                Rule::unique('contacts')->ignore($id),
+            ],
+            'number' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('contacts/' . $id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $contact = Contact::find($id);
+        $contact->name = request('name');
+        $contact->number = request('number');
+        $contact->save();
+
+        // redirect to groups page with success message
+        return redirect('/contacts')->with(['title' => 'Groups', 'success' => 'Contact was edited!']);
     }
 
     /**

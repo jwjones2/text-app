@@ -1,17 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Contacts</h1>
 
     @if(count($contacts) > 0)
-        <div class="list-group">
-        @foreach($contacts as $contact)
-            <a href="/contacts/{{$contact->id}}" class="list-group-item list-group-item-info list-group-item-action">{{$contact->name}} -- {{$contact->number}}</a>
-        @endforeach
-        </div>
+        <div class="card" style="">
+            <div class="card-header mb-2 bg-info text-white font-weight-bold">
+                Contacts
+            </div>
 
+            @foreach($contacts as $contact)
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="/contacts/{{$contact->id}}">{{$contact->name}} ({{$contact->number}})</a></li>
+                </ul>
+            @endforeach
+        
+        </div>
         {{$contacts->links()}}
     @else
         <h3>There are no contacts.</h3>
     @endif
+    
 @endsection

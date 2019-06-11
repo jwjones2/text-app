@@ -10,6 +10,17 @@ use \App\Contact;
 
 class GroupsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -132,11 +143,15 @@ class GroupsController extends Controller
         $group = Group::find($id);
         $members = Contact::all();
         $title = 'Add Group Members';
+
+        // return contacts ids that are already a member of the group
+        $member_ids = $group->get_member_ids();
         
         return view('groups.members')->with([
             'title' => $title,
             'group' => $group,
-            'members' => $members
+            'members' => $members,
+            'member_ids' => $member_ids
         ]);
     }
     
@@ -146,13 +161,23 @@ class GroupsController extends Controller
         $group = Group::find($id);
 
         // loop over ids and add members to the group
-        foreach( array_keys($members) as $id ) {
-            // get the Model for contact then save
-            $contact = Contact::find($id);
-            $group->members()->save($contact);
+        if ( count($members) > 0 ) {
+            foreach( array_keys($members) as $member_id ) {
+                // get the Model for contact then save
+                $contact = Contact::find($member_id);
+                $group->members()->attach($contact);
+            }
         }
         
         // redirect to groups page with success message
-        return redirect('/groups/' . $id)->with(['title' => 'Group', 'success' => 'Group members were added!']);
+        return redirect('groups/' . $id)->with(['title' => 'Group', 'success' => 'Group members were added!', 'group' => $group]);
+    }
+
+    public function remove_member ( $group_id, $contact_id ) {
+        $group = Group::find($group_id);
+        $group->members()->detach($contact_id);
+
+        // redirect to groups page with success message
+        return redirect('groups/' . $group_id)->with(['title' => 'Group', 'success' => 'Group member was removed!', 'group' => $group]);
     }
 }

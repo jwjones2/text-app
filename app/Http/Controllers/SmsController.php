@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Twilio\Rest\Client;
 use Illuminate\Http\Request;
 use \App\Contact;
+use \App\Group;
 
 class SmsController extends Controller
 {
@@ -36,7 +37,7 @@ class SmsController extends Controller
 
         // get variables from POST request
         $message = $request->input('message') ?: '';
-        $send_to = $request->input('send_to') ?: null;
+        $send_to = $request->input('send_to') ?: 'all';
 
         // append this to end of every message
         $tag = "\n\nReply REMOVE to unsubscribe.  Msg & Data Rates may apply.";
@@ -48,14 +49,15 @@ class SmsController extends Controller
         * 
         * Default is everyone in contacts list. (if send_to is null)
         ***/
-        //if ( $send_to == 'all' || $send_to == null ) {
+        if ( $send_to == 'all' ) {
             $contacts = Contact::all();
-        //} else {  
-            // check group members by id to send (only building query here)
-        //    $query = 'SELECT t2.number FROM group_members as t1 INNER JOIN contacts as t2 ON t1.contact_id = t2.ID WHERE t1.group_id = ' . $send_to . ';';
-        //}
+        } else {  
+            // get the group members
+            $group = Group::find($send_to);
+            $contacts = $group->members;
+        }
         foreach ( $contacts as $contact ) {
-            file_put_contents('log.txt', '<h1>Sending to ' . $contact->number . '</h1>', FILE_APPEND);
+            echo '<h1>Sending to ' . $contact->number . '</h1>';
             
 
 
@@ -73,7 +75,7 @@ class SmsController extends Controller
             }
             */
         }
-
+return;
         return redirect()->route('home')->with(['title'=>$title, 'success' => 'The message was sent!']);
     }
 }
